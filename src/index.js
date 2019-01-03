@@ -430,23 +430,23 @@ export default class Swipeable extends PureComponent {
   _handleLayout = ({nativeEvent: {layout: {width}}}) => this.setState({width});
 
   _canSwipeRight() {
-    return this.props.leftContent || this._hasLeftButtons();
+    return !!this.props.leftContent || this._hasLeftButtons();
   }
 
   _canSwipeLeft() {
-    return this.props.rightContent || this._hasRightButtons();
+    return !!this.props.rightContent || this._hasRightButtons();
   }
 
   _hasLeftButtons() {
     const {leftButtons, leftContent} = this.props;
 
-    return !leftContent && leftButtons && leftButtons.length;
+    return !leftContent && !!leftButtons && leftButtons.length > 0;
   }
 
   _hasRightButtons() {
     const {rightButtons, rightContent} = this.props;
 
-    return !rightContent && rightButtons && rightButtons.length;
+    return !rightContent && !!rightButtons && rightButtons.length > 0;
   }
 
   _getReleaseAnimationFn() {
